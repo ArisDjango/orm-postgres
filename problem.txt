@@ -1,0 +1,14 @@
+---- permasalahan:
+command psql not working on cmd
+---- solusi:
+environment --> tambahkan pada path:
+    %SystemRoot%\System32\
+    %PROGRAMFILES%\PostgreSQL\13\bin
+
+-----permasalahan :
+chcp 1252 not working, menyebabkan perintah dengan kode psql ndak berjalan
+--- solusi :
+    run regedit
+    Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor
+    new -> string value -> value name=Autorun, value data=chcp 1252
+    restart

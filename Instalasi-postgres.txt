@@ -1,0 +1,25 @@
+- install postgresql https://www.postgresql.org/
+- pastikan system32 dan folder instalasi /bin masuk di path environment
+- (disini biasanya muncul masalah, lihat di bab problem)
+- Pengelolaan db juga bisa melakui pgadmin
+
+- psql -U postgres -h localhost --> login sebagai superuser
+    - Membuat User/pass baru:
+        -  CREATE USER aris;
+        -  ALTER USER aris PASSWORD 'aris1985';
+    - Memberikan hak akses membuat db:
+        -  ALTER USER aris CREATEDB;
+    - Memberikan hak akses read/write/delete/update ke db tertentu
+        -  GRANT ALL ON DATABASE data_karyawan to "aris";
+    - cek data user yang aktif --> \du
+    - keluar --> \quit
+
+- Membuat DB baru by user 'aris'
+    - psql -U aris
+    - CREATE DATABASE data_karyawan;
+
+
+
+
+
+bisa dimulai memasukkan table ke database atau melalui ORM django
