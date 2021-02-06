@@ -18,11 +18,19 @@
     - keluar --> \quit
 
 ##---------- Perintah -------------------
-- \c <database> <user> , ex: \c blog_baru aris   ---> pindah diantara user dan database
-- \l --> list semua database
-- \du --> data user all list
+- daftar table pg_database --> https://www.postgresql.org/docs/9.4/catalog-pg-database.html
+
+- \c <database> <user> , ex: \c blog_baru aris   ---> connect antar user dan database
+
+- List daftar database
+    - \l --> list semua database
+    - list dbase berdasarkan user 33235 --> SELECT datname FROM pg_database where datdba=33235;
+- List daftar user
+    - \du --> data user all list
 - \dt --> data table all list
-- select datname
+
+
+
 ## ----------- User ----------------------------------
 - Membuat DB baru by user 'aris'
    - createdb -U aris data_karyawan;
