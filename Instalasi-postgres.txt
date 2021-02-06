@@ -17,6 +17,12 @@
     - cek data user yang aktif --> \du
     - keluar --> \quit
 
+##---------- Perintah -------------------
+- \c <database> <user> , ex: \c blog_baru aris   ---> pindah diantara user dan database
+- \l --> list semua database
+- \du --> data user all list
+- \dt --> data table all list
+- select datname
 ## ----------- User ----------------------------------
 - Membuat DB baru by user 'aris'
    - createdb -U aris data_karyawan;
@@ -33,6 +39,8 @@
             last_login TIMESTAMP 
     );
     ```
+
+
     
     
 
