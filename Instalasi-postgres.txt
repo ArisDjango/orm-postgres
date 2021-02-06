@@ -1,22 +1,40 @@
+## -------------- Insalasi -----------------------
 - install postgresql https://www.postgresql.org/
 - pastikan system32 dan folder instalasi /bin masuk di path environment
 - (disini biasanya muncul masalah, lihat di bab problem)
 - Pengelolaan db juga bisa melakui pgadmin
 
+## ----------- Root ---------------------------
 - psql -U postgres -h localhost --> login sebagai superuser
     - Membuat User/pass baru:
         -  CREATE USER aris;
         -  ALTER USER aris PASSWORD 'aris1985';
     - Memberikan hak akses membuat db:
         -  ALTER USER aris CREATEDB;
-    - Memberikan hak akses read/write/delete/update ke db tertentu
+    - CREATE DATABASE data_karyawan;
+    - Memberikan hak akses read/write/delete/update ke db tertentu --> jika dbase dibuat oleh uspersuer dan agar user biasa bisa akses
         -  GRANT ALL ON DATABASE data_karyawan to "aris";
     - cek data user yang aktif --> \du
     - keluar --> \quit
 
+## ----------- User ----------------------------------
 - Membuat DB baru by user 'aris'
-    - psql -U aris
-    - CREATE DATABASE data_karyawan;
+   - createdb -U aris data_karyawan;
+- Akses DB by user 'aris'
+    - psql -U aris data_karyawan
+- Membuat table baru
+    ```
+    CREATE TABLE accounts (
+        user_id serial PRIMARY KEY,
+        username VARCHAR ( 50 ) UNIQUE NOT NULL,
+        password VARCHAR ( 50 ) NOT NULL,
+        email VARCHAR ( 255 ) UNIQUE NOT NULL,
+        created_on TIMESTAMP NOT NULL,
+            last_login TIMESTAMP 
+    );
+    ```
+    
+    
 
 
 
