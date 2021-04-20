@@ -38,7 +38,16 @@
 
 ## Using the low-level cache API
 - Mencoba praktek operasi memchaced di python/django
-- python manage.py shell
-- `from django.core.cache import cache`
-- `cache.set('musician', 'Django Reinhardt', 20)` --> Note: set() --> untuk set chache, key='musician', timeout=20 seconds
-- `cache.get('musician')` --> value = 'Django Reinhardt', jika get() digunakan setelah 20 s, maka value=none
+  - python manage.py shell
+  - `from django.core.cache import cache`
+  - `cache.set('musician', 'Django Reinhardt', 20)` --> Note: set() --> untuk set chache, key='musician', timeout=20 seconds
+  - `cache.get('musician')` --> value = 'Django Reinhardt', jika get() digunakan setelah 20 s, maka value=none, jika timeout tidak di set, maka akan mengambil dari conf
+- Mencoba memchache dengan queryset
+  - python manage.py shell
+  ```py
+  from courses.models import Subject
+  
+  subjects = Subject.objects.all()
+  cache.set('my_subjects', subjects)
+  cache.get('my_subjects')
+  ```
