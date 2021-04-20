@@ -51,3 +51,38 @@
   cache.set('my_subjects', subjects)
   cache.get('my_subjects')
   ```
+## Caching based on dynamic data
+- contoh:
+  ```py
+  class CourseListView(TemplateResponseMixin, View):
+      model = Course
+      template_name = 'courses/course/list.html'
+
+      def get(self, request, subject=None):
+          # subjects = Subject.objects.annotate(total_courses=Count('courses')) # diganti memcache
+          subjects = cache.get('all_subjects')
+          if not subjects:
+              subjects = Subject.objects.annotate(total_courses=Count('courses'))
+              cache.set('all_subjects', subjects)
+          # courses = Course.objects.annotate(total_modules=Count('modules')) # diganti memcached -- all_courses
+          all_courses = Course.objects.annotate(total_modules=Count('modules'))
+          if subject:
+              subject = get_object_or_404(Subject, slug=subject)
+              # courses = courses.filter(subject=subject)
+              key = f'subject_{subject.id}_courses'
+              courses = cache.get(key)
+              if not courses:
+                  courses = all_courses.filter(subject=subject)
+                  cache.set(key, courses)
+          else:
+              courses = cache.get('all_courses')
+              if not courses:
+                  courses = all_courses
+                  cache.set('all_courses', courses)
+
+          return self.render_to_response({'subjects': subjects,
+                                          'subject': subject,
+                                          'courses': courses})
+  ```
+  
+## Caching template fragments
