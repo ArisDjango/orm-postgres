@@ -1,7 +1,7 @@
 ## Memchaced
 [Instalation memchaced](https://github.com/memcached/memcached/wiki/Install)
 
-## other
+## other instalation
 - sudo apt install memcached
 - memcached -l 127.0.0.1:11211
 - ps -ef | grep -i memc
@@ -15,14 +15,30 @@
   - stats --> lihat log untuk set dan get
  
 ## python/django memchaced
-- pip install python-memcached==1.59
-- pip install django-memcache-status==2.2
-- settings.py
+- instalasi/setting
+  - pip install python-memcached==1.59
+  - settings.py
+    ```py
+    CACHES = {
+      'default': {
+          'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+          'LOCATION': '127.0.0.1:11211',
+          }
+    }
+    ```
+- Monitoring status chache
+  - pip install django-memcache-status==2.2 --> settings app registration 'memcache_status', 
+  - add cache status di admin
+  - course/admin.py
   ```py
-  CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-        }
-  }
+  # use memcache admin index site
+  admin.site.index_template = 'memcache_status/admin_index.html'
   ```
+  - pada localhot/admin akan muncul tab monitor cache
+
+## Using the low-level cache API
+- Mencoba praktek operasi memchaced di python/django
+- python manage.py shell
+- `from django.core.cache import cache`
+- `cache.set('musician', 'Django Reinhardt', 20)` --> Note: set() --> untuk set chache, key='musician', timeout=20 seconds
+- `cache.get('musician')` --> value = 'Django Reinhardt', jika get() digunakan setelah 20 s, maka value=none
