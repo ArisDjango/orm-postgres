@@ -86,3 +86,47 @@
   ```
   
 ## Caching template fragments
+```html
+{% load cache %}
+{% extends "base.html" %}
+
+{% block content %}
+<div class="module">
+    {% cache 600 module_contents module %}
+        {% for content in module.contents.all %}
+            {% with item=content.item %}
+                <h2>{{ item.title }}</h2>
+                {{ item.render }}
+            {% endwith %}
+        {% endfor %}
+    {% endcache %}
+    </div>
+{% endblock %}
+```
+
+## Caching views
+- Edit the students/urls.py
+  ```py
+  path('course/<pk>/',
+        cache_page(60 * 15) (views.StudentCourseDetailView.as_view()),
+        name='student_course_detail'),
+
+    path('course/<pk>/<module_id>/',
+        cache_page(60 * 15) (views.StudentCourseDetailView.as_view()),
+        name='student_course_detail_module'),
+  ```
+ ## Using the per-site cache
+ - settings.py
+  ```py
+  'django.contrib.sessions.middleware.SessionMiddleware',
+  'django.middleware.cache.UpdateCacheMiddleware', # ----------->
+  'django.middleware.common.CommonMiddleware',
+  'django.middleware.cache.FetchFromCacheMiddleware', # ------->
+  
+  ...
+  
+  CACHE_MIDDLEWARE_ALIAS = 'default'
+  CACHE_MIDDLEWARE_SECONDS = 60 * 15 # 15 minutes
+  CACHE_MIDDLEWARE_KEY_PREFIX = 'educa'
+  ```
+  
