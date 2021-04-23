@@ -1,5 +1,59 @@
 ## Redis
 - Instalasi --> https://redis.io/topics/quickstart
+- Best practice
+    - Instalasi dari source code
+        ```py
+        '''
+        wget http://download.redis.io/redis-stable.tar.gz
+        tar xvzf redis-stable.tar.gz
+        cd redis-stable
+        make --> atau
+        sudo make install. --> menginstall global / bin 
+        '''
+        ```
+     - Instalasi dari ubuntu
+        ```py
+        '''
+        $ sudo add-apt-repository ppa:redislabs/redis
+        $ sudo apt-get update
+        $ sudo apt-get install redis
+        '''
+        ```
+     - command
+        ```py
+        '''
+        redis-server --> the Redis Server itself.
+        redis-sentinel --> the Redis Sentinel executable (monitoring and failover).
+        redis-cli --> the command line interface utility to talk with Redis.
+        redis-benchmark --> used to check Redis performances.
+        redis-check-aof and redis-check-rdb (redis-check-dump in 3.0 and below) --> useful in the rare event of corrupted data files.
+        '''
+        ```
+     - Starting Redis
+        ```py
+        $ redis-server
+        ```
+     - Check if Redis is working
+        ```PY
+        '''
+        $ redis-cli ping
+        
+        $ redis-cli
+        redis 127.0.0.1:6379> ping
+        PONG
+        redis 127.0.0.1:6379> set mykey somevalue
+        OK
+        redis 127.0.0.1:6379> get mykey
+        "somevalue"
+        '''
+        ```
+        
+     - Redis Presistance
+        ```
+        $ redis-cli shutdown
+        ```
+     - Installing Redis more properly --> read more on https://redis.io/topics/quickstart
+     
 <a name="C41"></a>
 - C.4.1. Installing Redis
     - Linux
