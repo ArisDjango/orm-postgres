@@ -1,4 +1,5 @@
 ## Redis
+- Instalasi --> https://redis.io/topics/quickstart
 <a name="C41"></a>
 - C.4.1. Installing Redis
     - Linux
