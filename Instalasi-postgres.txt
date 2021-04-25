@@ -1,4 +1,20 @@
-## -------------- Insalasi -----------------------
+## Cek (ubuntu)
+- postgres --version
+- sudo find /usr -wholename '*/bin/postgres' --> jika tidak ditemukan version, bisa dicari directory postgres
+- jika berhasil akan muncul directory, misal: /usr/lib/postgresql/12/bin/postgres
+- /usr/lib/postgresql/12/bin/postgres -V ----> cek versi postgresql dari directory
+- psql --version -------> cek psql console interaktif untuk postgres
+- Jika postgre/psql belum ada bisa dilakukan instalasi
+
+## ------------- Instalasi (Ubuntu) ---------------
+- sudo apt update
+- sudo apt install postgresql postgresql-contrib
+- lakukan prosedur cek diatas
+- sudo -u postgres psql ----------> masuk console psql
+- jika ada masalah socket -----> sudo pg_ctlcluster 12 main start
+
+
+## -------------- Insalasi (windows)-----------------------
 - install postgresql https://www.postgresql.org/
 - pastikan system32 dan folder instalasi /bin masuk di path environment
 - (disini biasanya muncul masalah, lihat di bab problem)
