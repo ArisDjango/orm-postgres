@@ -1,20 +1,24 @@
 ## Docs
 - https://www.postgresql.org/docs/12/index.html
+- https://ubuntu.com/server/docs/databases-postgresql
 
 ## Cek (ubuntu)
-- postgres --version
+- `postgres --version`
 - sudo find /usr -wholename '*/bin/postgres' --> jika tidak ditemukan version, bisa dicari directory postgres
 - jika berhasil akan muncul directory, misal: /usr/lib/postgresql/12/bin/postgres
-- /usr/lib/postgresql/12/bin/postgres -V ----> cek versi postgresql dari directory
-- psql --version -------> cek psql console interaktif untuk postgres
+- `/usr/lib/postgresql/12/bin/postgres -V` ----> cek versi postgresql dari directory
+- `psql --version` -------> cek psql console interaktif untuk postgres
 - Jika postgre/psql belum ada bisa dilakukan instalasi
 
 ## ------------- Instalasi (Ubuntu) ---------------
-- sudo apt update
-- sudo apt install postgresql postgresql-contrib
+- `sudo apt update`
+- `sudo apt install postgresql postgresql-contrib`
 - lakukan prosedur cek diatas
-- sudo -u postgres psql ----------> masuk console psql
-- jika ada masalah socket -----> sudo pg_ctlcluster 12 main start
+- `sudo -u postgres psql` ----------> masuk console psql sebagai super user
+- 
+- Masalah:
+    - `sudo pg_ctlcluster 12 main start`  -----> jika ada masalah socket
+    - `sudo nano /etc/postgresql/12/main/pg_hba.conf` `sudo pg_ctlcluster 12 main reload` --> user tidak bisa menjalankan psql dari home --> rubah local dari peer ke md5, 
 
 ## ---------- Base ------------
 - sudo -u postgres --> user di ubuntu khusus operasi postgres, exit -> jika ingin keluar dari user ini
