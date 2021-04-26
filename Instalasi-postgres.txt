@@ -1,3 +1,6 @@
+## Docs
+- https://www.postgresql.org/docs/12/index.html
+
 ## Cek (ubuntu)
 - postgres --version
 - sudo find /usr -wholename '*/bin/postgres' --> jika tidak ditemukan version, bisa dicari directory postgres
@@ -13,14 +16,73 @@
 - sudo -u postgres psql ----------> masuk console psql
 - jika ada masalah socket -----> sudo pg_ctlcluster 12 main start
 
+## ---------- practice ------------
+- sudo -u postgres --> user di ubuntu khusus operasi postgres, exit -> jika ingin keluar dari user ini
+- createuser --interactive
+- createuser -P -s -e joe --> CREATE ROLE joe PASSWORD 'md5b5f5ba1a423792b526f799ae4eb3d59e' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;
+- createdb mydb
+- dropdb mydb
+- psql mydb
+- \h(help), \q(quit)
+- TABLE
+    ```sql
+    CREATE TABLE weather (
+        city            varchar(80),
+        temp_lo         int,           
+        temp_hi         int,           
+        prcp            real,          
+        date            date
+    );
+    
+    DROP TABLE tablename;
+    
+    INSERT INTO weather (city, temp_lo, temp_hi, prcp, date)
+    VALUES ('San Francisco', 43, 57, 0.0, '1994-11-29');
+    
+    COPY weather FROM '/home/user/weather.txt';
+    
+    SELECT * FROM weather;
+    SELECT city, temp_lo, temp_hi, prcp, date FROM weather;
+    SELECT city, (temp_hi+temp_lo)/2 AS temp_avg, date FROM weather;
+    
+    SELECT * FROM weather
+        WHERE city = 'San Francisco' AND prcp > 0.0;
+        
+    SELECT * FROM weather
+        ORDER BY city, temp_lo;
+        
+    SELECT DISTINCT city
+        FROM weather;
+    
+    SELECT DISTINCT city
+        FROM weather
+        ORDER BY city;
+    
+    ---- JOIN --------
+    SELECT *
+        FROM weather, cities
+        WHERE city = name;
+    
+    SELECT *
+        FROM weather INNER JOIN cities ON (weather.city = cities.name);
+        
+    SELECT *
+        FROM weather LEFT OUTER JOIN cities ON (weather.city = cities.name);
+        
+    SELECT W1.city, W1.temp_lo AS low, W1.temp_hi AS high,
+        W2.city, W2.temp_lo AS low, W2.temp_hi AS high
+        FROM weather W1, weather W2
+        WHERE W1.temp_lo < W2.temp_lo
+        AND W1.temp_hi > W2.temp_hi;
+    ```
 
-## -------------- Insalasi (windows)-----------------------
+## -------------- Instalasi (windows)-----------------------
 - install postgresql https://www.postgresql.org/
 - pastikan system32 dan folder instalasi /bin masuk di path environment
 - (disini biasanya muncul masalah, lihat di bab problem)
 - Pengelolaan db juga bisa melakui pgadmin
 
-## ----------- Root ---------------------------
+## ----------- Practice ---------------------------
 - psql -U postgres -h localhost --> login sebagai superuser
     - Membuat User/pass baru:
         -  CREATE USER aris;
