@@ -16,16 +16,30 @@
 - sudo -u postgres psql ----------> masuk console psql
 - jika ada masalah socket -----> sudo pg_ctlcluster 12 main start
 
-## ---------- practice ------------
+## ---------- Base ------------
 - sudo -u postgres --> user di ubuntu khusus operasi postgres, exit -> jika ingin keluar dari user ini
 - createuser --interactive
 - createuser -P -s -e joe --> CREATE ROLE joe PASSWORD 'md5b5f5ba1a423792b526f799ae4eb3d59e' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;
 - createdb mydb
 - dropdb mydb
 - psql mydb
-- \h(help), \q(quit)
-- TABLE
+- \h(help), \q(quit), \l, \du, \dt
+
+## --- Manage Dtabase ---
     ```sql
+    CREATE DATABASE dbname OWNER rolename;
+    CREATE DATABASE dbname TEMPLATE template0;
+    
+    ALTER DATABASE mydb SET geqo TO off; --> disable
+    
+    DROP DATABASE name;
+    
+    CREATE TABLESPACE fastspace LOCATION '/ssd1/postgresql/data';
+    ```
+## ---- QUERY ----
+- Basic Query
+    ```sql
+    --- Create Table ---
     CREATE TABLE weather (
         city            varchar(80),
         temp_lo         int,           
@@ -36,11 +50,16 @@
     
     DROP TABLE tablename;
     
+    
+    
+    ---- Populate -------
     INSERT INTO weather (city, temp_lo, temp_hi, prcp, date)
     VALUES ('San Francisco', 43, 57, 0.0, '1994-11-29');
     
     COPY weather FROM '/home/user/weather.txt';
     
+    
+    --- Query Table -----
     SELECT * FROM weather;
     SELECT city, temp_lo, temp_hi, prcp, date FROM weather;
     SELECT city, (temp_hi+temp_lo)/2 AS temp_avg, date FROM weather;
@@ -57,8 +76,10 @@
     SELECT DISTINCT city
         FROM weather
         ORDER BY city;
+        
+        
     
-    ---- JOIN --------
+    ---- Join Table --------
     SELECT *
         FROM weather, cities
         WHERE city = name;
@@ -74,8 +95,83 @@
         FROM weather W1, weather W2
         WHERE W1.temp_lo < W2.temp_lo
         AND W1.temp_hi > W2.temp_hi;
+        
+    ---- Agreggate Function ----
+    SELECT max(temp_lo) FROM weather;
+    
+    SELECT city FROM weather
+        WHERE temp_lo = (SELECT max(temp_lo) FROM weather);
+        
+    SELECT city, max(temp_lo)
+        FROM weather
+        GROUP BY city;
+        
+    SELECT city, max(temp_lo)
+        FROM weather
+        WHERE city LIKE 'S%'
+        GROUP BY city
+        HAVING max(temp_lo) < 40;
+        
+        
+    --- Updates -----
+    UPDATE weather
+        SET temp_hi = temp_hi - 2,  temp_lo = temp_lo - 2
+        WHERE date > '1994-11-28';
+    
+    
+    --- Delete ----
+    DELETE FROM weather WHERE city = 'Hayward';
+    
     ```
+- Advanced Query
+    ```sql
+    --- Views ---------
+    CREATE VIEW myview AS
+    SELECT city, temp_lo, temp_hi, prcp, date, location
+        FROM weather, cities
+        WHERE city = name;
 
+    SELECT * FROM myview;
+    
+    
+    ---- Foreign Keys ----------
+    CREATE TABLE cities (
+        city     varchar(80) primary key,
+        location point
+    );
+
+    CREATE TABLE weather (
+            city      varchar(80) references cities(city),
+            temp_lo   int,
+            temp_hi   int,
+            prcp      real,
+            date      date
+    );
+    
+    ```
+- Backup - Restore
+    ```sql
+    pg_dump dbname > dumpfile --> backup
+    psql dbname < dumpfile ---> restore
+    
+    cat filename.gz | gunzip | psql dbname --> file zip
+    
+    ```
+- Monitoring
+    ```
+    ps auxww | grep ^postgres
+    psql -c 'SHOW cluster_name'
+    ```
+- Postgre Server
+    ```
+    root# mkdir /usr/local/pgsql
+    root# chown postgres /usr/local/pgsql
+    root# su postgres
+    postgres$ initdb -D /usr/local/pgsql/data
+    ```
+- https://www.postgresql.org/docs/12/sql.html ---> part 2
+- 
+    
 ## -------------- Instalasi (windows)-----------------------
 - install postgresql https://www.postgresql.org/
 - pastikan system32 dan folder instalasi /bin masuk di path environment
