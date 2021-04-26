@@ -19,6 +19,7 @@
 ## ---------- Base ------------
 - sudo -u postgres --> user di ubuntu khusus operasi postgres, exit -> jika ingin keluar dari user ini
 - createuser --interactive
+- createuser dP educa --> pake password
 - createuser -P -s -e joe --> CREATE ROLE joe PASSWORD 'md5b5f5ba1a423792b526f799ae4eb3d59e' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;
 - createdb mydb
 - dropdb mydb
