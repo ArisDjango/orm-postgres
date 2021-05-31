@@ -20,6 +20,9 @@
     - `sudo pg_ctlcluster 12 main start`  -----> jika ada masalah socket
     - `sudo nano /etc/postgresql/12/main/pg_hba.conf` `sudo pg_ctlcluster 12 main reload` --> user tidak bisa menjalankan psql dari home --> rubah local dari peer ke md5, 
 
+## ---------- Instalasi Centos ----------
+- https://www.hostinger.com/tutorials/how-to-install-postgresql-on-centos-7/
+
 ## ---------- Base ------------
 - sudo -u postgres --> user di ubuntu khusus operasi postgres, exit -> jika ingin keluar dari user ini
 - createuser --interactive
