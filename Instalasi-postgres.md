@@ -3,6 +3,9 @@
 - https://ubuntu.com/server/docs/databases-postgresql
 
 ## Cek (ubuntu)
+- `ps -ef | grep postgresql` --> cek service run/tidak
+- `sudo service postgresql start`
+- `sudo service postgresql stop`
 - `postgres --version`
 - sudo find /usr -wholename '*/bin/postgres' --> jika tidak ditemukan version, bisa dicari directory postgres
 - jika berhasil akan muncul directory, misal: /usr/lib/postgresql/12/bin/postgres
