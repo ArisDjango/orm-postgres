@@ -1,6 +1,11 @@
 ## dumpdata django
+- Installasi/clone
+  - Clone git
+  - python -m venv venv --> `python venv/bin/activate`
+  - install dependency --> `pip install -r requirements.txt`
+  - Pastikan ada usernya, atau buat superuser baru --> `python manage.py createsuperuser`
 - `python manage.py dumpdata --help`
-- `python manage.py dumpdata courses --indent=2`
+- `python manage.py dumpdata courses --indent=2` --> output di console
 - `mkdir courses/fixtures`
 - `python manage.py dumpdata courses --indent=2 --output=courses/fixtures/subjects.json`
 - `python manage.py loaddata subjects.json`
