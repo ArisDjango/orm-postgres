@@ -24,7 +24,7 @@
     - `sudo nano /etc/postgresql/12/main/pg_hba.conf` `sudo pg_ctlcluster 12 main reload` --> user tidak bisa menjalankan psql dari home --> rubah local dari peer ke md5,
 - Masalah (centos)
     - `sudo -u postgres` --> `SHOW config_file;` --> /var/lib/pgsql/data/postgresql.conf
-    -  
+    -  `sudo rm -fr /var/lib/pgsql/data/*` --> jika service tidak mau jalan
 
 ## ---------- Instalasi Centos ----------
 - https://www.hostinger.com/tutorials/how-to-install-postgresql-on-centos-7/
