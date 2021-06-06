@@ -23,7 +23,9 @@
     - `sudo pg_ctlcluster 12 main start`  -----> jika ada masalah socket
     - `sudo nano /etc/postgresql/12/main/pg_hba.conf` `sudo pg_ctlcluster 12 main reload` --> user tidak bisa menjalankan psql dari home --> rubah local dari peer ke md5,
 - Masalah (centos)
+    - mencari hba.conf
     - `sudo -u postgres` --> `SHOW config_file;` --> /var/lib/pgsql/data/postgresql.conf
+    - `sudo su` --> `nano /var/lib/pgsql/data/pg_hba.conf` --> ubah user ke md5
     -  `sudo rm -fr /var/lib/pgsql/data/*` --> jika service tidak mau jalan
 
 ## ---------- Instalasi Centos ----------
