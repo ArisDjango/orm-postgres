@@ -25,6 +25,7 @@
 
 ## ---------- Instalasi Centos ----------
 - https://www.hostinger.com/tutorials/how-to-install-postgresql-on-centos-7/
+- [Error instalasi psycopg2, gcc, devel](https://stackoverflow.com/questions/41611551/python-cant-install-psycopg2-on-centos-7)
 
 ## ---------- Base ------------
 - sudo -u postgres --> user di ubuntu khusus operasi postgres, exit -> jika ingin keluar dari user ini
