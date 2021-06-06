@@ -28,7 +28,8 @@
     - `sudo su` --> `nano /var/lib/pgsql/data/pg_hba.conf` --> ubah user ke md5
     -  `sudo rm -fr /var/lib/pgsql/data/*` --> jika service tidak mau jalan
 
-## ---------- Instalasi Centos ----------
+## ---------- Instalasi RHEL/Centos ----------
+- https://techviewleo.com/install-postgresql-12-on-amazon-linux/
 - https://www.hostinger.com/tutorials/how-to-install-postgresql-on-centos-7/
 - [Error instalasi psycopg2, gcc, devel](https://stackoverflow.com/questions/41611551/python-cant-install-psycopg2-on-centos-7)
 
