@@ -30,6 +30,7 @@
 
 ## ---------- Instalasi RHEL/Centos ----------
 - https://techviewleo.com/install-postgresql-12-on-amazon-linux/
+- https://developpaper.com/install-configure-postgresql-12-on-centos-7/
 - https://www.hostinger.com/tutorials/how-to-install-postgresql-on-centos-7/
 - [Error instalasi psycopg2, gcc, devel](https://stackoverflow.com/questions/41611551/python-cant-install-psycopg2-on-centos-7)
 
