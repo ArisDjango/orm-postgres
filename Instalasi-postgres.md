@@ -49,7 +49,7 @@
 - su - postgres --> login sebagai superuser postgres
 - psql --> masuk shell
 - \h(help), \q(quit), \l, \du, \dt
-    ```sql
+    ```psql
     CREATE USER user_name WITH ENCRYPTED PASSWORD 'mypassword';
     
     CREATE ROLE user_name WITH SUPERUSER CREATEROLE CREATEDB; --> memberikan role
