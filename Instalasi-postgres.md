@@ -52,18 +52,21 @@
     ```sql
     CREATE USER user_name WITH ENCRYPTED PASSWORD 'mypassword';
     
-    ALTER ROLE user_name CREATEDB; --> memberikan role
+    CREATE ROLE user_name WITH SUPERUSER CREATEROLE CREATEDB; --> memberikan role
+    ALTER ROLE user_name CREATEDB; --> merubah role, = alter user
     ALTER ROLE miriam SUPERUSER CREATEROLE CREATEDB;
     
     CREATE DATABASE dbname
     CREATE DATABASE dbname OWNER rolename;
     CREATE DATABASE dbname TEMPLATE template0;
     
+    GRANT READ ON dbname TO manuel;
     GRANT ALL PRIVILEGES ON dbname TO manuel;
     
     ALTER DATABASE mydb SET geqo TO off; --> disable
     
     DROP DATABASE name;
+    DROP ROLE jonathan; --> = drop user
     
     CREATE TABLESPACE fastspace LOCATION '/ssd1/postgresql/data';
     ```
