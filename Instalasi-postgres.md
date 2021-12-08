@@ -52,7 +52,7 @@
     ```sql
     CREATE USER user_name WITH ENCRYPTED PASSWORD 'mypassword';
     
-    ALTER ROLE user_name CREATEDB --> memberikan role
+    ALTER ROLE user_name CREATEDB; --> memberikan role
     ALTER ROLE miriam SUPERUSER CREATEROLE CREATEDB;
     
     CREATE DATABASE dbname
