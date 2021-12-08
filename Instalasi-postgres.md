@@ -52,8 +52,14 @@
     ```sql
     CREATE USER user_name WITH ENCRYPTED PASSWORD 'mypassword';
     
+    ALTER ROLE user_name CREATEDB --> memberikan role
+    ALTER ROLE miriam SUPERUSER CREATEROLE CREATEDB;
+    
+    CREATE DATABASE dbname
     CREATE DATABASE dbname OWNER rolename;
     CREATE DATABASE dbname TEMPLATE template0;
+    
+    GRANT ALL PRIVILEGES ON dbname TO manuel;
     
     ALTER DATABASE mydb SET geqo TO off; --> disable
     
