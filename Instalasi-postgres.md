@@ -35,17 +35,23 @@
 - [Error instalasi psycopg2, gcc, devel](https://stackoverflow.com/questions/41611551/python-cant-install-psycopg2-on-centos-7)
 
 ## ---------- Base ------------
-- sudo -u postgres --> user di ubuntu khusus operasi postgres, exit -> jika ingin keluar dari user ini
+- sudo su --> login sebagai root
+- su - postgres --> login sebagai superuser postgres
 - createuser --interactive
 - createuser dP educa --> pake password
 - createuser -P -s -e joe --> CREATE ROLE joe PASSWORD 'md5b5f5ba1a423792b526f799ae4eb3d59e' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;
 - createdb mydb
 - dropdb mydb
-- psql mydb
-- \h(help), \q(quit), \l, \du, \dt
+
 
 ## --- Manage Dtabase ---
+- sudo su --> login sebagai root
+- su - postgres --> login sebagai superuser postgres
+- psql --> masuk shell
+- \h(help), \q(quit), \l, \du, \dt
     ```sql
+    CREATE USER user_name WITH ENCRYPTED PASSWORD 'mypassword';
+    
     CREATE DATABASE dbname OWNER rolename;
     CREATE DATABASE dbname TEMPLATE template0;
     
