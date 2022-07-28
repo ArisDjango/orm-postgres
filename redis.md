@@ -1,4 +1,5 @@
 ## Redis
+- https://thepylot.dev/dockerizing-django-with-postgres-redis-and-celery/
 - Instalasi --> https://redis.io/topics/quickstart
 - Best practice
     - Instalasi dari source code
