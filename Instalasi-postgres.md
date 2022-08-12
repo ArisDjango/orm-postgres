@@ -73,6 +73,7 @@
 ## ---- QUERY ----
 - Basic Query
     ```sql
+    psql weatherdb
     --- Create Table ---
     CREATE TABLE weather (
         city            varchar(80),
