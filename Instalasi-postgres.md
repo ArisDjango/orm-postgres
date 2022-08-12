@@ -97,6 +97,11 @@
     INSERT INTO weather (city, temp_lo, temp_hi, prcp, date)
     VALUES ('San Francisco', 43, 57, 0.0, '1994-11-29');
     
+    INSERT INTO weather (city, temp_lo, temp_hi, prcp, date)
+    VALUES ('San Francisco', 43, 57, 0.0, '1994-11-29'),
+           ('Jakarta', 54, 66, 0.0, '1994-11-29'),
+           ('Bandung', 43, 57, 0.0, '1994-11-29');
+    
     COPY weather FROM '/home/user/weather.txt';
     
     
