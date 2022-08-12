@@ -119,7 +119,11 @@
         FROM weather
         ORDER BY city;
         
-        
+    --- Transactions --> merubah value column ---
+    UPDATE weather SET temp_lo = temp_lo - 5 WHERE city = 'jakarta';
+    
+    UPDATE branches SET balance = balance + 100.00
+    WHERE name = (SELECT branch_name FROM accounts WHERE name = 'Bob');
     
     ---- Join Table --------
     SELECT *
