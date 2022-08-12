@@ -74,7 +74,7 @@
 - Basic Query
     ```sql
     psql weatherdb
-    --- Create Table ---
+    --- Create Table with column ---
     CREATE TABLE weather (
         city            varchar(80),
         temp_lo         int,           
@@ -83,6 +83,12 @@
         date            date
     );
     
+    --- Update/insert new column ---
+    ALTER TABLE weather 
+        ADD count int,
+        ADD name varchar(80);
+    
+    --- Delete Table ---
     DROP TABLE tablename;
     
     
