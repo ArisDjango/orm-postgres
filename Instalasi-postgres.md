@@ -111,6 +111,7 @@
     SELECT * FROM weather
         ORDER BY city, temp_lo;
         
+    --- tidak menampilkan data duplikat, misal `city: jakarta` ada 5, maka hanya ditampilkan 1 ---   
     SELECT DISTINCT city
         FROM weather;
     
